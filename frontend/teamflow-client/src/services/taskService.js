@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api/tasks';
+const API_BASE_URL = 'http://localhost:5232/api/tasks';
 
 const taskApi = axios.create({
   baseURL: API_BASE_URL,
