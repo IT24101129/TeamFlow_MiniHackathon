@@ -1,77 +1,72 @@
-# TeamFlow — SE3090 Full-Stack Task Management System
+# TeamFlow
 
-![TeamFlow Banner](https://img.shields.io/badge/SE3090-MVP%20Full%20Stack-6366f1)
-![Backend](https://img.shields.io/badge/C%23-ASP.NET%20Core%20Web%20API-512bd4)
-![Database](https://img.shields.io/badge/PostgreSQL-EF%20Core-336791)
-![Frontend](https://img.shields.io/badge/React-Vite%20%2B%20Router-61dafb)
+## SE3090 Software Engineering Frameworks — Mini Hackathon
 
-## 📌 Project Overview
-**TeamFlow** is a lightweight, responsive task management application designed for small startup teams transitioning away from unmanageable spreadsheets. Built for the **SE3090 Software Engineering Frameworks** project, it features full RESTful CRUD operations, PostgreSQL database persistence via Entity Framework Core, instant filtering/sorting/search capabilities, and a metrics summary dashboard.
+TeamFlow is a full-stack task management system designed to help teams create, organize, track, filter, and manage tasks through a web-based interface.
+
+The current MVP provides a RESTful ASP.NET Core Web API, PostgreSQL database integration, and a React frontend. The architecture also leaves room for future Agentic AI integration without implementing Agentic AI in the current version.
 
 ---
 
-## ✨ Features
+## Tech Stack
 
-- **Task Management**: Create, view, update status (To Do, In Progress, Done), and delete tasks.
-- **Dynamic Filtering & Search**: Filter tasks by status and assignee name, and search by title simultaneously.
-- **Sorting**: Sort tasks by due date (earliest or latest).
-- **Dashboard Metrics**: Live count summary of Total, To Do, In Progress, and Completed tasks.
-- **Validation**: Server-side and client-side validation enforcing required titles, valid priorities, allowed statuses, and prohibiting past due dates.
-- **Auto-Seeded Database**: Pre-seeded with 5 realistic tasks upon first database creation.
-- **Responsive UI**: Glassmorphic modern dark-mode design supporting desktop, tablet, and mobile browsers.
-- **Clean Architecture Extension Point**: Clean interface boundary prepared for future **Agentic AI** & **Flutter** mobile app integration.
+### Backend
+
+* ASP.NET Core Web API
+* C#
+* Entity Framework Core
+* PostgreSQL
+* Npgsql
+* Swagger / OpenAPI
+
+### Frontend
+
+* React
+* Vite
+* React Router
+* Axios
+* Lucide React
+* CSS
+
+### Database
+
+* PostgreSQL
+* Entity Framework Core migrations
+* Seeded task data
 
 ---
 
-## 🛠️ Technology Stack
+## Project Structure
 
-| Layer | Technology |
-| :--- | :--- |
-| **Backend** | ASP.NET Core Web API (.NET 10), C# |
-| **Database** | PostgreSQL + Entity Framework Core 10 |
-| **Frontend** | React 19, Vite, React Router v7, Lucide Icons, Axios |
-| **API Docs** | Swagger / OpenAPI |
-| **Version Control** | Git & GitHub |
-
----
-
-## 📁 Project Structure
-
-```
+```text
 TeamFlow/
+│
 ├── backend/
 │   └── TeamFlow.API/
 │       ├── Controllers/
-│       │   └── TasksController.cs          # REST API endpoints
+│       │   └── TasksController.cs
 │       ├── Data/
-│       │   └── ApplicationDbContext.cs     # EF Core DbContext & Seed Data
+│       │   └── ApplicationDbContext.cs
 │       ├── DTOs/
-│       │   └── TaskDtos.cs                 # Request/Response DTO models
+│       │   └── TaskDtos.cs
 │       ├── Models/
-│       │   └── TaskItem.cs                 # Tasks PostgreSQL Entity
+│       │   └── TaskItem.cs
 │       ├── Services/
-│       │   ├── ITaskService.cs             # Task service interface
-│       │   ├── TaskService.cs              # Task business logic & validation
-│       │   └── IAgentWorkflowService.cs    # Future Agentic AI extension point
-│       ├── Migrations/                     # EF Core migration files
-│       ├── Program.cs                      # Dependency Injection & Pipeline
-│       └── appsettings.json                # PostgreSQL Connection Strings
+│       │   ├── IAgentWorkflowService.cs
+│       │   ├── ITaskService.cs
+│       │   └── TaskService.cs
+│       ├── Migrations/
+│       ├── Program.cs
+│       ├── appsettings.json
+│       └── TeamFlow.API.csproj
 │
 ├── frontend/
 │   └── teamflow-client/
 │       ├── src/
 │       │   ├── components/
-│       │   │   ├── Navbar.jsx              # Header navigation
-│       │   │   ├── TaskSummary.jsx         # Metric summary cards
-│       │   │   ├── TaskFilters.jsx         # Search & filter bar
-│       │   │   └── TaskCard.jsx            # Individual task card item
 │       │   ├── pages/
-│       │   │   ├── TasksPage.jsx           # Main board page
-│       │   │   └── AddTaskPage.jsx         # Task creation form page
 │       │   ├── services/
-│       │   │   └── taskService.js          # Axios API communication
-│       │   ├── App.jsx                     # Router config
-│       │   ├── index.css                   # Glassmorphic CSS design system
+│       │   ├── App.jsx
 │       │   └── main.jsx
 │       ├── package.json
 │       └── vite.config.js
@@ -82,110 +77,174 @@ TeamFlow/
 
 ---
 
-## 🚀 Quick Start Guide
+## Current Features
 
-### 1. Prerequisites
-- **.NET SDK 10.0+** installed
-- **Node.js 20+** installed
-- **PostgreSQL** server running locally (Port 5432) or pgAdmin
+### Task Management
+
+* Create tasks
+* View all tasks
+* View individual tasks
+* Update task information
+* Update task status
+* Delete tasks
+* Server-side validation
+
+### Task Dashboard
+
+* Total task count
+* To Do count
+* In Progress count
+* Completed count
+* Task cards
+* Status indicators
+* Overdue indicators
+
+### Search and Filtering
+
+* Search tasks by title
+* Filter by status
+* Filter by assignee
+* Sort tasks
+
+### Frontend
+
+* Responsive React interface
+* React Router navigation
+* Add Task page
+* Task dashboard
+* API integration using Axios
+
+### API
+
+RESTful endpoints are provided for task management and can be tested using Swagger/OpenAPI.
 
 ---
 
-### 2. Database Setup (PostgreSQL)
+## Database
 
-1. Open pgAdmin or psql shell.
-2. Create the database named `TeamFlowDb`:
-   ```sql
-   CREATE DATABASE "TeamFlowDb";
-   ```
-3. Update connection string in `backend/TeamFlow.API/appsettings.json` if your local PostgreSQL password differs:
-   ```json
-   "ConnectionStrings": {
-     "DefaultConnection": "Host=localhost;Port=5432;Database=TeamFlowDb;Username=postgres;Password=YOUR_PASSWORD"
-   }
-   ```
+The application uses PostgreSQL with Entity Framework Core.
+
+### Database Name
+
+```text
+TeamFlowDb
+```
+
+### Main Table
+
+```text
+Tasks
+```
+
+The initial database migration also includes seeded task data for demonstration and testing.
 
 ---
 
-### 3. Run Backend API
+## Running the Backend
 
-Navigate to the API folder and apply database migrations:
+From the project root:
 
-```bash
-cd backend/TeamFlow.API
-
-# Install EF Core tool if not already installed globally
-dotnet tool install --global dotnet-ef
-
-# Apply migrations to create PostgreSQL tables and seed data
-dotnet ef database update
-
-# Start backend server
+```powershell
+cd backend\TeamFlow.API
 dotnet run
 ```
 
-- **API Base URL**: `http://localhost:5000` (or configured port)
-- **Swagger Documentation UI**: `http://localhost:5000/swagger`
+The API runs locally on the configured ASP.NET Core URL.
+
+Swagger can be accessed through:
+
+```text
+http://localhost:5000/swagger
+```
 
 ---
 
-### 4. Run Frontend Client
+## Running the Frontend
 
-Open a new terminal window:
+Open a second terminal:
 
-```bash
-cd frontend/teamflow-client
-
-# Install dependencies
+```powershell
+cd frontend\teamflow-client
 npm install
-
-# Start Vite React development server
 npm run dev
 ```
 
-- **Frontend App URL**: `http://localhost:5173`
+The Vite development server will provide a local URL, normally:
 
----
-
-## 📡 REST API Endpoints
-
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `GET` | `/api/tasks` | Fetch tasks (Supports `?status=`, `?assignee=`, `?search=`, `?sort=dueDate`) |
-| `GET` | `/api/tasks/{id}` | Get single task by ID |
-| `POST` | `/api/tasks` | Create a new task (Validates title & due date) |
-| `PUT` | `/api/tasks/{id}` | Update full task details |
-| `PATCH` | `/api/tasks/{id}/status` | Update task status (`To Do`, `In Progress`, `Done`) |
-| `DELETE` | `/api/tasks/{id}` | Delete task by ID |
-
----
-
-## 🧠 Future Extensions
-
-### 1. Future Agentic AI Subsystem (Component 4)
-The current project defines `IAgentWorkflowService` in `Services/IAgentWorkflowService.cs` as a clean dependency injection boundary. When Agentic AI capabilities (e.g. automated task prioritization, AI approval workflows) are added in future assignment milestones, they will plug into this service layer without needing changes to PostgreSQL schemas or React frontends.
-
-### 2. Future Flutter Mobile App Extension
-The REST API returns standard JSON payloads adhering to OpenAPI specifications, allowing the future Flutter cross-platform mobile app to consume the exact same endpoints seamlessly.
-
----
-
-## 👥 Git Branching Model for 4 Team Members
-
-To ensure clean group contributions for the full SE3090 project:
-
-- `main`: Production-ready code
-- `feature/member1-task-management` *(Member 1 - Current MVP)*
-- `feature/member2-team-management` *(Member 2 - Future)*
-- `feature/member3-project-reporting` *(Member 3 - Future)*
-- `feature/member4-ai-workflow` *(Member 4 - Future)*
-
-### Initial Git Repository Commands:
-```bash
-git init
-git add .
-git commit -m "Initial TeamFlow full-stack MVP implementation"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/TeamFlow.git
-git push -u origin main
+```text
+http://localhost:5173
 ```
+
+---
+
+## Database Migration
+
+After PostgreSQL is installed and the `TeamFlowDb` database is available, run:
+
+```powershell
+cd backend\TeamFlow.API
+dotnet ef database update
+```
+
+This applies the Entity Framework Core migrations and creates the required database tables.
+
+---
+
+## API Endpoints
+
+The main task API is:
+
+```text
+/api/tasks
+```
+
+The API provides operations for:
+
+```text
+GET     /api/tasks
+GET     /api/tasks/{id}
+POST    /api/tasks
+PUT     /api/tasks/{id}
+PATCH   /api/tasks/{id}/status
+DELETE  /api/tasks/{id}
+```
+
+Swagger provides an interactive interface for testing these endpoints.
+
+---
+
+## Future Extension: Agentic AI
+
+Agentic AI is **not implemented in the current MVP**.
+
+A service interface has been included to provide an architectural extension point for future development:
+
+```text
+IAgentWorkflowService
+```
+
+Future versions may integrate Agentic AI for features such as automated task prioritization, workflow assistance, or task recommendations.
+
+No LLM, vector database, or agent framework is currently required to run the MVP.
+
+---
+
+## Future Development
+
+Potential future improvements include:
+
+* Team and user management
+* Task assignment and team roles
+* Authentication and authorization
+* Project progress tracking
+* Reporting and analytics
+* Mobile application
+* Agentic AI workflow automation
+
+---
+
+## Team
+
+This project was developed as part of the SE3090 Software Engineering Frameworks coursework.
+
+The current repository contains the complete full-stack MVP for the TeamFlow Mini Hackathon.
